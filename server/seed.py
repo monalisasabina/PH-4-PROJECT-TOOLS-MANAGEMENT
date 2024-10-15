@@ -37,9 +37,9 @@ with app.app_context():
 
     print('Adding tools...')
     tools = [
-        Tools(name='Hammer', brand='Stanley', purchase_date=datetime(2023, 7, 5), no_of_tools=10, image='path/to/hammer.jpg', available_tools=6),
-        Tools(name='Drill', brand='Bosch', purchase_date=datetime(2022, 9, 18), no_of_tools=5, image='path/to/drill.jpg', available_tools=3),
-        Tools(name='Wrench', brand='DeWalt', purchase_date=datetime(2023, 5, 12), no_of_tools=8, image='path/to/wrench.jpg',available_tools=5)
+        Tools(name='Hammer', brand='Stanley', purchase_date=datetime(2023, 7, 5), no_of_tools=10, image='https://microless.com/cdn/products/19dca030b9eed0fad51273735c1e3b4b-hi.jpg', available_tools=6),
+        Tools(name='Drill', brand='Bosch', purchase_date=datetime(2022, 9, 18), no_of_tools=5, image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Egdtg1RYebkDtTfdtZVHrv3XWbvziudS8Q&s', available_tools=3),
+        Tools(name='Wrench', brand='DeWalt', purchase_date=datetime(2023, 5, 12), no_of_tools=8, image='https://images.thdstatic.com/productImages/f7b54a27-4f6a-4baa-a742-fa321d44da0c/svn/dewalt-ratcheting-wrenches-dwht75497-64_1000.jpg',available_tools=5)
     ]
     db.session.add_all(tools)
     db.session.commit()

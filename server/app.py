@@ -4,11 +4,14 @@ from flask import Flask,request, make_response
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from models import db, Employee, StoreEmployee, Tools, ToolRecords
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
+
+CORS(app)
 
 migrate = Migrate(app, db)
 db.init_app(app)
@@ -222,7 +225,9 @@ class Tools1(Resource):
                     "name":tool.name,
                     "brand":tool.brand,
                     "no_of_tools":tool.no_of_tools,
-                    "image":tool.image
+                    "image":tool.image,
+                    "purchase_date":tool.purchase_date,
+                    "available_tools":tool.available_tools
                }
                tools_list.append(tool_dict)
 
@@ -322,7 +327,11 @@ class Records(Resource):
                     "date_returned":record.date_returned,
                     "tool_id":record.tool_id,
                     "employee_id":record.employee_id,
-                    "store_employee_id":record.store_employee_id
+                    "store_employee_id":record.store_employee_id,
+                    "tool":record.tool.name,
+                    "employee":record.employee.name,
+                    "store_employee":record.store_employee.name,
+                    "date_taken":record.date_taken
                }
                records_list.append(record_dict)
 
