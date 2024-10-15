@@ -37,9 +37,9 @@ with app.app_context():
 
     print('Adding tools...')
     tools = [
-        Tools(name='Hammer', brand='Stanley', purchase_date=datetime(2023, 7, 5), no_of_tools=10, image='path/to/hammer.jpg'),
-        Tools(name='Drill', brand='Bosch', purchase_date=datetime(2022, 9, 18), no_of_tools=5, image='path/to/drill.jpg'),
-        Tools(name='Wrench', brand='DeWalt', purchase_date=datetime(2023, 5, 12), no_of_tools=8, image='path/to/wrench.jpg')
+        Tools(name='Hammer', brand='Stanley', purchase_date=datetime(2023, 7, 5), no_of_tools=10, image='path/to/hammer.jpg', available_tools=6),
+        Tools(name='Drill', brand='Bosch', purchase_date=datetime(2022, 9, 18), no_of_tools=5, image='path/to/drill.jpg', available_tools=3),
+        Tools(name='Wrench', brand='DeWalt', purchase_date=datetime(2023, 5, 12), no_of_tools=8, image='path/to/wrench.jpg',available_tools=5)
     ]
     db.session.add_all(tools)
     db.session.commit()
@@ -66,7 +66,7 @@ with app.app_context():
     print(tools_list)
 
     print('\nGetting all toolrecords')
-    tool_records_list=Tools.query.all()
+    tool_records_list=ToolRecords.query.all()
     print(tool_records_list)
 
     print('\n..............Seeding complete!...............')

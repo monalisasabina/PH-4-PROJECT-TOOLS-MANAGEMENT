@@ -23,7 +23,7 @@ class Employee(db.Model,SerializerMixin):
     # An employee can appear on many times toolrecords, depending on the tools he/she taken
     tool_records = db.relationship('ToolRecords', back_populates='employee')
 
-    serialize_rules=('-toolrecords.employee',)
+    serialize_rules=('-tool_records.employee',)
 
     def __repr__(self):
         return f"<Employee id: {self.id}, " +\
@@ -50,7 +50,7 @@ class StoreEmployee(db.Model, SerializerMixin):
     # a store employee will also appear many times depending how many to tools he/she has assigned on the tool records
     tool_records = db.relationship('ToolRecords', back_populates='store_employee')
 
-    serialize_rules=('-toolrecords.store_employee',)
+    serialize_rules=('-tool_records.store_employee',)
 
     def __repr__(self):
         return f"<Store Employee id: {self.id}, " +\
@@ -73,20 +73,23 @@ class Tools(db.Model, SerializerMixin):
     brand = db.Column(db.String)
     purchase_date= db.Column(db.DateTime, default = datetime.utcnow)
     no_of_tools = db.Column(db.Integer)
+    available_tools=db.Column(db.Integer)
     image = db.Column(db.String)
 
     # Relationship between tool and tool_records
     # can have many tools recorded in the toolrecords table
     tool_records = db.relationship('ToolRecords', back_populates='tool')
 
-    serialize_rules=('-toolrecords.tools',)
+    serialize_rules=('-tool_records.tools',)
    
     def __repr__(self):
         return f"<Tools id: {self.id}, " +\
             f"Name: {self.name}, " +\
             f"Brand: {self.brand}, " +\
             f"Date Bought: {self.purchase_date}, " +\
-            f"No. of Tools: {self.no_of_tools} >"
+            f"No. of Tools: {self.no_of_tools} ,"+\
+            f"Available Tools: {self.available_tools} "+\
+            f"Image URL: {self.image} >"
     
 
     @validates('name')
@@ -105,7 +108,7 @@ class Tools(db.Model, SerializerMixin):
 
     
 class ToolRecords(db.Model,SerializerMixin):
-    __tablename__ = "toolrecords"
+    __tablename__ = "tool_records"
 
     id = db.Column(db.Integer,primary_key=True)
     date_taken = db.Column(db.DateTime, default= datetime.utcnow)
@@ -121,11 +124,11 @@ class ToolRecords(db.Model,SerializerMixin):
     employee = db.relationship('Employee', back_populates='tool_records')
     store_employee = db.relationship('StoreEmployee', back_populates='tool_records')
 
-    serialize_rules=('-employee.toolrecords','-store_employee.toolrecords','-tool.toolrecords',)
+    serialize_rules=('-employee.tool_records','-store_employee.tool_records','-tool.tool_records',)
 
 
     def __repr__(self):
-        return f"<Tool record id: {self.id}. {self.employee.name} has taken {self.tool.name} " +\
+        return f"<Tool record id: {self.id}. {self.employee.name} has taken {self.tool.name}, tool.id:{self.tool_id} " +\
              f"at {self.date_taken}. The tool was returned on {self.date_returned}" +\
              f". {self.store_employee.name} was in charge>"
     
