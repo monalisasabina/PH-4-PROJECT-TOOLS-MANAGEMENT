@@ -3,7 +3,11 @@ import Tools from "./Pages/Tools";
 import ErrorPage from "./Pages/ErrorPage";
 import AddTool from "./Pages/AddTool";
 import ToolRecords from "./Pages/ToolRecords";
+import StoreEmployees from "./Pages/StoreEmployee"
+import Employees from "./Pages/Employees"
 import App from "./App"
+
+
 
 
 const routes = [
@@ -27,8 +31,18 @@ const routes = [
         {
             path: "/toolrecords",
             element: <ToolRecords/>
-        }
-      
+        },
+        {
+            path: "/storeemployees",
+            element: <StoreEmployees/>
+        },
+        {
+            path: "/employees",
+            element: <Employees/>
+        },
+          
+          
+          
     ]
  }
   

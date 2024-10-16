@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react"
 import RecordsForm from "../components/RecordsForm"
 import './Table.css'
+import { Link } from "react-router-dom"
 
 function ToolRecords(){
 
@@ -50,6 +51,13 @@ function ToolRecords(){
     return(
         <>
            <h1> Tool Records</h1>
+
+           <div>
+                 <Link className="link" to={`/employees`}>View Employee Details</Link>
+
+                 <Link className="link" to={`/storeemployees`}>View Store Employee Deta</Link>
+
+           </div>
 
            <div>
                <RecordsForm onAddRecord={handleRecordFormSubmit}/>

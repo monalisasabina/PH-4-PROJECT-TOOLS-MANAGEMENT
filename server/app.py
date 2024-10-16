@@ -38,7 +38,8 @@ class Employees(Resource):
                employee_dict = {
                     "name":employee.name,
                     "role":employee.role,
-                    "department":employee.department
+                    "department":employee.department,
+                    "id":employee.id
                }
                employees_list.append(employee_dict)
 
@@ -133,6 +134,7 @@ class StoreEmployees(Resource):
                store_employee_dict = {
                     "name":store_employee.name,
                     "role":store_employee.role,
+                    "id":store_employee.id
                }
                store_employees_list.append(store_employee_dict)
 
