@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import EmployeeForm from "../components/EmployeeForm"
+import '../index.css'
 
 function Employees(){
 
@@ -54,7 +55,7 @@ function Employees(){
            </div>
 
            <div>
-               <table>
+               <table >
                    <thead>
                         <tr>
                             <th>EMPLOYEE ID</th>
