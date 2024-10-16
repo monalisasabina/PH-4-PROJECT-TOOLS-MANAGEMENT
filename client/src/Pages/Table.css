@@ -1,0 +1,34 @@
+table,th,td{
+    text-align: center;
+    margin: auto;
+    width: 1500px ;
+    border: 0.5px;
+    border-style: solid;
+    margin-top: 10px;
+}
+
+thead{
+  background-color:gainsboro;
+}
+
+.records_form{
+
+  max-width: 1470px; /* Set a max width for the form */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 10px; /* Add padding inside the form */
+  border: 1px solid #ddd; /* Optional border for form */
+  border-radius: 5px; /* Optional rounded corners */
+  background-color: #f9f9f9; /* Optional background color */
+}
+
+input{
+    width: 150px;
+    height:30px;
+    margin: 5px;
+}
+
+label{
+    margin: 10px;
+
+}
+

@@ -324,19 +324,20 @@ class Records(Resource):
           records_list=[]
           for record in ToolRecords.query.all():
                record_dict = {
+                    "id":record.id,
                     "date_returned":record.date_returned,
                     "tool_id":record.tool_id,
                     "employee_id":record.employee_id,
                     "store_employee_id":record.store_employee_id,
-                    "tool":record.tool.name,
-                    "employee":record.employee.name,
-                    "store_employee":record.store_employee.name,
+                    # "tool":record.tool.name,
+                    # "employee":record.employee.name,
+                    # "store_employee":record.store_employee.name,
                     "date_taken":record.date_taken
                }
                records_list.append(record_dict)
 
           return make_response(records_list,200)
-     
+    
     def post(self):
           
           try:
