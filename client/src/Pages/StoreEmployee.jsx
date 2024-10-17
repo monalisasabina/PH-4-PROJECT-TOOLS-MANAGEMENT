@@ -51,7 +51,7 @@ function StoreEmployees(){
            <h1>StoreEmployees</h1>
 
            <div>
-               <StoreEmployeesForm onAddEmployee={handleStoreEmployeeSubmit}/>
+               <StoreEmployeesForm onAddStoreEmployee={handleStoreEmployeeSubmit}/>
            </div>
 
            <div>
