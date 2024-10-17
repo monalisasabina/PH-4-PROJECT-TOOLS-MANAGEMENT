@@ -2,8 +2,8 @@ import {NavLink} from "react-router-dom"
  
 function NavBar(){
     return(
-        <nav>
-            <NavLink to="/" className="nav-link">Home</NavLink>
+        <nav className="dark-glow-navbar">
+            <NavLink to="/" className="nav_link">Home</NavLink>
 
             <NavLink to="/add_tools" className="nav_link" >Add Tool</NavLink>
 
