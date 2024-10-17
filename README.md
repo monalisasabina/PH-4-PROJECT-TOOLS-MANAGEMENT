@@ -1,1 +1,1 @@
-# Anything
+# STORE MANAGEMENT SYSTEM -development

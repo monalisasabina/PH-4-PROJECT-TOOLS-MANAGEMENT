@@ -18,16 +18,16 @@ function StoreEmployeesForm({onAddStoreEmployee}){
     }
 
     // Submitting store employee form
-    function handleStoreEmployeeSubmit(){
+    function handleStoreEmployeeSubmit(event){
 
-         // event.preventDefault()
+         event.preventDefault()
 
          const storeEmployeeData={
             name:name,
             role:role,
             
         }
-        console.log(employeeData)
+        console.log(storeEmployeeData)
 
         fetch(`http://127.0.0.1:5555/storeemployees `, {
             method: "POST",
