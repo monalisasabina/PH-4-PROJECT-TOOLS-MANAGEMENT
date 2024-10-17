@@ -19,7 +19,20 @@ thead{
   border: 1px solid #ddd; /* Optional border for form */
   border-radius: 5px; /* Optional rounded corners */
   background-color: #f9f9f9; /* Optional background color */
+  color: black;
 }
+
+.tools_form{
+
+  max-width: 1470px; /* Set a max width for the form */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 10px; /* Add padding inside the form */
+  border: 1px solid #ddd; /* Optional border for form */
+  border-radius: 5px; /* Optional rounded corners */
+  background-color: #f9f9f9; /* Optional background color */
+  color: black;
+}
+
 
 input{
     width: 150px;
