@@ -22,9 +22,12 @@
 }
 
 .tool_card-img {
+  display: flex;
   width: 400px;
-  height: 300px;
+  height: 200px;
   object-fit: cover;
+  align-items: center;
+  margin: auto;
 }
 
 .tool_card-title {
