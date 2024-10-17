@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 function ToolRecords(){
 
     const[toolRecords, setToolRecords]=useState([])
+    const[search, setSearch] =useState("")
 
     useEffect(()=>{
         fetch('http://127.0.0.1:5555/records')
@@ -47,21 +48,35 @@ function ToolRecords(){
         }
        }  
      }
+
+
+    //  search filter
+    const filteredToolRecords =toolRecords.filter((record) =>
+
+        record.employee_id.toString().includes(search)
+    
+    )
  
     return(
         <>
            <h1> Tool Records</h1>
 
            <div>
-                 <Link className="link" to={`/employees`}>View Employee Details</Link>
+                 <Link className="link" to={`/employees`}>View Employee List</Link>
 
-                 <Link className="link" to={`/storeemployees`}>View Store Employee Deta</Link>
+                 <Link className="link" to={`/storeemployees`}>View Store Employee List</Link>
+           </div>
 
+
+           <div >
+                <input className="search" onChange={(event) =>setSearch(event.target.value)} value={search} placeholder="Search Employee ID" type="search"/>
            </div>
 
            <div>
-               <RecordsForm onAddRecord={handleRecordFormSubmit}/>
+               <RecordsForm onAddRecord={handleRecordFormSubmit}  />
            </div>
+
+          
 
            <div className="table_div">
                <table className="table">
@@ -81,7 +96,7 @@ function ToolRecords(){
                    </thead>
 
                    <tbody>
-                       {toolRecords.map((toolrecord) =>(
+                       {filteredToolRecords.map((toolrecord) =>(
                         <tr key={toolrecord.id  || Math.random().toString()}>
                             <td>{toolrecord.id}</td>
                             <td>{toolrecord.tool_id}</td>

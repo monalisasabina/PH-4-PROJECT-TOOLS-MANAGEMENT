@@ -7,6 +7,7 @@ function RecordsForm({onAddRecord}){
     const[storeEmployeeId, setStoreEmployeeId]=useState('')
     const[dateReturned, setDateReturned]=useState('')
 
+   
 
     // tool_id field
     function handleToolId(event){
@@ -64,6 +65,9 @@ function RecordsForm({onAddRecord}){
             setDateReturned('');
             
         }   
+
+        
+        
 
      return(
         <div>

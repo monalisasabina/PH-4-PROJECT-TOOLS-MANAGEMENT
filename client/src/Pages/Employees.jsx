@@ -5,6 +5,7 @@ import '../index.css'
 function Employees(){
 
     const[employees, setEmployees]=useState([])
+    const[search, setSearch]=useState("")
 
     useEffect(()=> {
         fetch('http://127.0.0.1:5555/employees')
@@ -46,9 +47,19 @@ function Employees(){
        }  
      }
 
+    //  Handling search employee
+    const filteredEmployees =employees.filter((employee) =>
+        
+        employee.name.toLowerCase().includes(search.toLowerCase())
+    )
+
     return(
         <>
            <h1>Employees</h1>
+
+           <div >
+                <input className="search" onChange={(event) =>setSearch(event.target.value)} value={search} placeholder="Search Employee Name" type="search"/>
+           </div>
 
            <div>
                 <EmployeeForm onAddEmployee={handleEmployeeSubmit}/>
@@ -67,7 +78,7 @@ function Employees(){
                    </thead>
                    
                    <tbody>
-                         {employees.map((employee) =>(
+                         {filteredEmployees.map((employee) =>(
                             <tr key={employee.id || Math.random().toString()}>
                                 <td>{employee.id}</td>
                                 <td>{employee.name}</td>

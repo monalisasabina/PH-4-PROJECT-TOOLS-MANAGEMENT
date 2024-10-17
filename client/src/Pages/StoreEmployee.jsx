@@ -5,6 +5,7 @@ import StoreEmployeesForm from "../components/StoreEmployeeForm"
 function StoreEmployees(){
 
     const[storeEmployees, setStoreEmployee]= useState([])
+    const[search ,setSearch]= useState("")
 
     useEffect(() =>{
         fetch('http://127.0.0.1:5555/storeemployees')
@@ -46,9 +47,19 @@ function StoreEmployees(){
         setStoreEmployee([...storeEmployees, newStoreEmployee])
     }
 
+    //  Handling search store employee
+    const filteredStoreEmployees =storeEmployees.filter((storeEmployee) =>
+        
+        storeEmployee.name.toLowerCase().includes(search.toLowerCase())
+    )
+
     return(
         <>
            <h1>StoreEmployees</h1>
+
+           <div >
+                <input className="search" onChange={(event) =>setSearch(event.target.value)} value={search} placeholder="Search Store Employee Name" type="search"/>
+           </div>
 
            <div>
                <StoreEmployeesForm onAddStoreEmployee={handleStoreEmployeeSubmit}/>
@@ -66,7 +77,7 @@ function StoreEmployees(){
                    </thead>
                    
                    <tbody>
-                         {storeEmployees.map((storeEmployee) =>(
+                         {filteredStoreEmployees.map((storeEmployee) =>(
                             <tr key={storeEmployee.id || Math.random().toString()}>
                                 <td>{storeEmployee.id}</td>
                                 <td>{storeEmployee.name}</td>
