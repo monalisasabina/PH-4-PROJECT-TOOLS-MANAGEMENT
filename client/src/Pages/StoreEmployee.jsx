@@ -24,7 +24,7 @@ function StoreEmployees(){
         console.log("Deleting employee with ID:", id)
      
         //delete warning and putting a password
-        if(window.confirm("Only the store manager can delete this tool")){
+        if(window.confirm("Only the store manager can delete this store employee")){
           const password=window.prompt("Please enter your password")
       
  
@@ -42,7 +42,7 @@ function StoreEmployees(){
        }  
      }
 
-         // handling submit
+    // handling submit
     function handleStoreEmployeeSubmit(newStoreEmployee){
         setStoreEmployee([...storeEmployees, newStoreEmployee])
     }

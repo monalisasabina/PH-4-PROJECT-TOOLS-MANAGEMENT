@@ -29,7 +29,7 @@ function Employees(){
         console.log("Deleting employee with ID:", id)
      
         //delete warning and putting a password
-        if(window.confirm("Only the store manager can delete this tool")){
+        if(window.confirm("Only the store manager can delete this employee")){
           const password=window.prompt("Please enter your password")
       
  
@@ -52,6 +52,8 @@ function Employees(){
         
         employee.name.toLowerCase().includes(search.toLowerCase())
     )
+
+ 
 
     return(
         <>
@@ -84,7 +86,7 @@ function Employees(){
                                 <td>{employee.name}</td>
                                 <td>{employee.role}</td>
                                 <td>{employee.department}</td>
-                               <td><button onClick={() =>handleEmployeeDelete(employee.id)} >DELETE</button></td> 
+                                <td><button onClick={() =>handleEmployeeDelete(employee.id)} >DELETE</button></td> 
 
                             </tr>
                          ))}

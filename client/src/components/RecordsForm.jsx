@@ -81,8 +81,8 @@ function RecordsForm({onAddRecord}){
                 <label htmlFor="store_employee_id">Store Employee ID:</label>
                 <input onChange={handleStoreEmployeeId} value={storeEmployeeId} placeholder="Enter Store Employee Id" type="number"/>
 
-                <label htmlFor="date_returned">Date Returned:</label>
-                <input onChange={handleDateReturned} value={dateReturned}  type="date"/>
+                {/* <label htmlFor="date_returned">Date Returned:</label>
+                <input onChange={handleDateReturned} value={dateReturned}  type="date"/> */}
 
                 <button type="submit"> SUBMIT </button>
             </form>
