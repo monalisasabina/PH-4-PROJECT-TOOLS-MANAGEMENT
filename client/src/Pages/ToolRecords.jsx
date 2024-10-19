@@ -58,7 +58,6 @@ function ToolRecords(){
     
     )
 
-
     // handling date returned update
     function handleDateReturnedUpdate(id){
 

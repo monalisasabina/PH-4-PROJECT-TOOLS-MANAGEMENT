@@ -29,7 +29,7 @@ function StoreEmployees(){
       
  
         if(password==='123'){
-          fetch(`http://127.0.0.1:5555/employees/${id}`,{
+          fetch(`http://127.0.0.1:5555/storeemployees/${id}`,{
              method: "DELETE",
            })
           .then((res) => res.json())
