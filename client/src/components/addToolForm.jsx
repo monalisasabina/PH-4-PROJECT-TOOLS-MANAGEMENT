@@ -1,95 +1,82 @@
-import { useState } from "react"
+import * as Yup from "yup"
+import {useFormik} from "formik"
 
 function AddToolForm({onAddTool}){
 
-    const[name ,setName] =useState('')
-    const[brand, setBrand] = useState('')
-    const[noOfTools, setNoOfTools] = useState('')
-    const[image,setImage] = useState('')
+    const formSchema =Yup.object().shape({
+        name: Yup.string().required("Must enter a name"),
+        brand: Yup.string().required("Brand is required"),
+        no_of_tools: Yup.number().required("No of tools required"),
+        image: Yup.string().required("Image is required")
+    })
 
+    const formik = useFormik({
 
-    //Name field
-    function handleNameChange(event){
-        setName(event.target.value)
-        console.log(event.target.value)
-    }
+        initialValues:{
+            name:'',
+            brand:'',
+            no_of_tools:'',
+            image:'', 
+        },
 
-    // Brand field
-    function handleBrandChange(event){
-        setBrand(event.target.value)
-        console.log(event.target.value)
-    }
+        validationSchema: formSchema,
+        onSubmit: (values, {resetForm}) => {
 
-    // No. of Tools
-    function handleToolsChange(event){
-        setNoOfTools(event.target.value)
-        console.log(event.target.value)
-    }
+          const toolData = {
+            ...values, 
+            available_tools: values.no_of_tools,
+          }  
 
-    // Image
-    function handleImageChange(event){
-        setImage(event.target.value)
-        console.log(event.target.value)
-    }
+          fetch(`http://127.0.0.1:5555/tools`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(toolData),
+        })
+        .then((res) => res.json())
+        .then((newTool) => {
+            onAddTool(newTool);
+          
+            // Reset the form after submission
+            resetForm(); 
 
-    // Submitting the new tool
-    function handleAddToolSubmit(event){
-
-            event.preventDefault()
-    
-            const toolsData={
-                name:name,
-                brand:brand,
-                no_of_tools:noOfTools,
-                image:image,
-                available_tools:noOfTools,
-            }
-            console.log("Tools Data:",toolsData)
-    
-            fetch(`http://127.0.0.1:5555/tools `, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(toolsData),
-              })
-                .then((res) => res.json())
-                .then((newTool) => {
-                    onAddTool(newTool)
-                    console.log("API Response:",newTool)
-                })
-                .catch((error) => {
-                    console.error("Error adding tool:",error)})
-               
-        
-                // resetting field form
-                setName('');
-                setBrand('');
-                setNoOfTools('');
-                setImage('')
-        
-    }
+            console.log(newTool)
+        })
+      }
+    })
 
     return(
 
         <>
-          <form className="tools_form" onSubmit={handleAddToolSubmit}>
-            <label htmlFor="name">NAME:</label>
-            <input onChange={handleNameChange} value={name} type="text" placeholder="Enter Tool Name"/>
+          <form className="add_tools_form" onSubmit={formik.handleSubmit}>
 
-            <label htmlFor="brand">BRAND:</label>
-            <input onChange={handleBrandChange} value={brand} type="text" placeholder="Enter Tool's Brand"/>
+            <div className="fields">
+                <label htmlFor="name">NAME:</label>
+                <input onChange={formik.handleChange} id="name" value={formik.values.name} type="text" placeholder="Enter Tool Name"/>
+                <p style={{color: "red"}}> {formik.errors.name} </p>
+            </div>
 
-            <label htmlFor="no_of_tools">NUMBER OF TOOLS BROUGHT:</label>
-            <input onChange={handleToolsChange} value={noOfTools} type="number" placeholder="Enter Total Tool Number"/>
+            <div className="fields">
+                <label htmlFor="brand">BRAND:</label>
+                <input onChange={formik.handleChange} id="brand" value={formik.values.brand} type="text" placeholder="Enter Tool's Brand"/>
+                <p style={{color: "red"}}> {formik.errors.brand} </p>
+            </div>
 
-            <label htmlFor="image">IMAGE:</label>
-            <input onChange={handleImageChange} value={image} type="text" placeholder="Enter Tool Name"/>
+            <div className="fields">
+                <label htmlFor="no_of_tools">NUMBER OF TOOLS BROUGHT:</label>
+                <input onChange={formik.handleChange} id="no_of_tools" value={formik.values.no_of_tools} type="number" placeholder="Enter Total Number of Tools"/>
+                <p style={{color: "red"}}> {formik.errors.no_of_tools} </p>
+            </div>
+
+            <div className="fields">
+                <label htmlFor="image">IMAGE:</label>
+                <input onChange={formik.handleChange} id="image" value={formik.values.image} type="text" placeholder="Enter Tool Name"/>
+                <p style={{color: "red"}}> {formik.errors.image} </p>
+            </div>
 
             <button type="submit">SUBMIT</button>
-
           </form>
-
         </>
     )
 }

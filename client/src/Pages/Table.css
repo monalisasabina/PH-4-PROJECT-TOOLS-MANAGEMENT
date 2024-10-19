@@ -11,37 +11,68 @@ thead{
   background-color:gainsboro;
 }
 
-.records_form{
-
-  max-width: 1470px; /* Set a max width for the form */
-  margin: 0 auto; /* Center the form horizontally */
-  padding: 10px; /* Add padding inside the form */
-  border: 1px solid #ddd; /* Optional border for form */
-  border-radius: 5px; /* Optional rounded corners */
-  background-color: #f9f9f9; /* Optional background color */
+.add_tools_form{
+  display:inline-flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  max-width: 350px;
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
   color: black;
+  margin-left: 10px;
+}
+.add_tool{
+  display: inline-table;
+  margin-right: 90px;
 }
 
 .tools_form{
-
-  max-width: 1470px; /* Set a max width for the form */
-  margin: 0 auto; /* Center the form horizontally */
-  padding: 10px; /* Add padding inside the form */
-  border: 1px solid #ddd; /* Optional border for form */
-  border-radius: 5px; /* Optional rounded corners */
-  background-color: #f9f9f9; /* Optional background color */
+  max-width: 1470px; 
+  margin: 0 auto; 
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
   color: black;
 }
 
+.records_form{
+  display:inline-flex;
+  border: 1px solid #ddd;
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
+  height: 50px;
+  padding: 10px;
+  width: 1500px;
+  gap: 10px;
+}
 
 input{
-    width: 150px;
-    height:30px;
-    margin: 5px;
+  width: 320px;
+  height:30px;
+  margin: 5px;
+  border-radius: 15px;
+  font-size: 15px;
+}
+
+div.fields{
+  display: flex; 
+  gap: 0px;
+  flex-direction: column;
 }
 
 label{
-    margin: 10px;
+    margin: 5px;
 
+}
+
+button{
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  margin-top: 2px;
 }
 

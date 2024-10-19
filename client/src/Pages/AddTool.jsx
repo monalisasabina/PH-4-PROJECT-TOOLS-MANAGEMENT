@@ -27,14 +27,15 @@ function AddTool(){
 
     return(
         <>
-          <h1>adding tools</h1>
+          <h1>Add Tools Here</h1>
 
-          <AddToolForm  onAddTool={handleSubmitTool} />
-
+          <div className="add_tool">
+              <AddToolForm  onAddTool={handleSubmitTool} />
+          </div>
+         
           {/* One Tool card */}
-
           {newTool && (
-             <div className="tool_card">
+             <div className="tool_card add_tool">
                <h2>New Tool Added</h2>
                <h3>{newTool.name}</h3>
                <img src={newTool.image}/>
@@ -44,8 +45,6 @@ function AddTool(){
              
          </div>
           )}
-
-        
         </>
     )
 }
