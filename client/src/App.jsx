@@ -6,7 +6,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // Check if user is already logged in by checking a token or session
+  // Check if user is already logged in by checking a token or session 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {

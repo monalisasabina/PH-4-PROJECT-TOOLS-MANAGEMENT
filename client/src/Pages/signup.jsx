@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-// import { useAuth } from '../hooks/useAuth'; // Import the useAuth hook
+import { useNavigate, Link } from 'react-router-dom'; 
+import { useAuth } from '../components/UseAuth'; 
+import './Signup.css';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -9,6 +11,7 @@ const Signup = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state
   const { login } = useAuth(); // Destructure login from the useAuth hook
+  const navigate = useNavigate(); // To redirect after signup
 
   // Password validation rules 
   const isValidPassword = (password) => {
@@ -54,6 +57,7 @@ const Signup = () => {
         login(data.token); // Use the login function from the hook
         setMessage(data.message);
         setError(null);
+        navigate('/'); // Redirect to home or dashboard after signup
       } else {
         setError(data.error);  // Display error from server
         setMessage(null);
@@ -68,10 +72,11 @@ const Signup = () => {
 
   return (
     <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
+      
+      <form onSubmit={handleSubmit} className='signup-form'>
+        <div className='signup-container'>
+        <h2>Sign Up</h2>
+          <label>Username:</label>
           <input
             type="text"
             id="username"
@@ -82,7 +87,7 @@ const Signup = () => {
         </div>
 
         <div>
-          <label htmlFor="password">Password:</label>
+          <label>Password:</label>
           <input
             type="password"
             id="password"
@@ -93,7 +98,7 @@ const Signup = () => {
         </div>
 
         <div>
-          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <label>Confirm Password:</label>
           <input
             type="password"
             id="confirmPassword"
@@ -106,10 +111,17 @@ const Signup = () => {
         <button type="submit" disabled={loading}>
           {loading ? 'Signing Up...' : 'Sign Up'}
         </button>
+        {/* Link to login page for users who already have an account */}
+      <p>
+        Already have an account? <Link to="/login">Log in here</Link>
+      </p>
       </form>
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {message && <p style={{ color: 'green' }} aria-live="polite">{message}</p>}
+      {error && <p style={{ color: 'red' }} aria-live="polite">{error}</p>}
+
+      
+
     </div>
   );
 };

@@ -6,7 +6,9 @@ import ToolRecords from "./Pages/ToolRecords";
 import StoreEmployees from "./Pages/StoreEmployee";
 import Employees from "./Pages/Employees";
 import App from "./App";
-import Login from "./Pages/Login"; 
+import Login from "./Pages/Login";
+import Signup from "./Pages/signup"; // Import the Signup component
+import PrivateRoutes from "./components/PrivateRoutes";
 
 const routes = [
   {
@@ -16,34 +18,38 @@ const routes = [
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/add_tools",
-        element: <AddTool />
+        element: <AddTool />,
       },
       {
         path: "/tools",
-        element: <Tools />
+        element: <Tools />,
       },
       {
         path: "/toolrecords",
-        element: <ToolRecords />
+        element: <ToolRecords />,
       },
       {
         path: "/storeemployees",
-        element: <StoreEmployees />
+        element: <StoreEmployees />,
       },
       {
         path: "/employees",
-        element: <Employees />
+        element: <Employees />,
       },
       {
-        path: "/login", 
-        element: <Login setIsLoggedIn={() => {}} /> // Pass setIsLoggedIn when logging in
-      }
-    ]
-  }
+        path: "/login",
+        element: <Login setIsLoggedIn={() => {}} />,
+      },
+      {
+        path: "/signup", 
+        element: <Signup />,
+      },
+    ],
+  },
 ];
 
 export default routes;

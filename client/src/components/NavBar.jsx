@@ -13,7 +13,7 @@ function NavBar({ isLoggedIn, handleLogout }) {
       <NavLink to="/toolrecords" className="nav_link">Tools Records</NavLink>
 
       {isLoggedIn && (
-        <button onClick={handleLogout} className="nav_link">Logout</button>
+        <button onClick={handleLogout} className="Logout">Logout</button>
       )}
     </nav>
   );
