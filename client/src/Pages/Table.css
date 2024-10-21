@@ -5,8 +5,13 @@ table,th,td{
     border: 0.5px;
     border-style: solid;
     margin-top: 10px;
+    color:black;
+    
 }
 
+tbody{
+  background-color: blanchedalmond;
+}
 thead{
   background-color:gainsboro;
 }
@@ -50,22 +55,16 @@ thead{
 }
 
 input{
-  width: 320px;
-  height:30px;
-  margin: 5px;
-  border-radius: 15px;
-  font-size: 15px;
+    width: 250px;
+    height:30px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 15px;
 }
 
 div.fields{
   display: flex; 
-  gap: 0px;
-  flex-direction: column;
-}
-
-label{
-    margin: 5px;
-
+  gap: 15px;
 }
 
 button{
@@ -74,5 +73,28 @@ button{
   width: 100px;
   height: 40px;
   margin-top: 2px;
+}
+
+label{
+    margin: 10px;
+    color: black;
+
+}
+
+.link{
+  color: navajowhite;
+  margin-right: 20px;
+  margin-left: 15px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.search{
+  margin-left: 1150px;
+  margin-top: 15px;
+  border-radius: 15px;
+  width:350px;
+  text-align: center;
+  font-size: 15px;
 }
 

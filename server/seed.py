@@ -46,7 +46,7 @@ with app.app_context():
 
     print('Adding tool records...')
     tool_records = [
-        ToolRecords(date_returned=None, tool_id= 1, employee_id=1, store_employee_id=1),
+        ToolRecords(date_returned=None, tool_id= 3, employee_id=5, store_employee_id=5),
         ToolRecords(date_returned= '2024-09-21', tool_id=1,employee_id=1,store_employee_id=1)
     ]
     db.session.add_all(tool_records)
