@@ -3,6 +3,10 @@ from sqlalchemy import MetaData
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from datetime import datetime
+from flask_bcrypt import Bcrypt
+from flask_login import UserMixin
+
+bcrypt = Bcrypt()
 
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
@@ -131,4 +135,23 @@ class ToolRecords(db.Model,SerializerMixin):
         return f"<Tool record id: {self.id}. {self.employee.name} has taken {self.tool.name}, tool.id:{self.tool_id} " +\
              f"at {self.date_taken}. The tool was returned on {self.date_returned}" +\
              f". {self.store_employee.name} was in charge>"
+
+
+
+class User(db.Model, UserMixin, SerializerMixin):
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+
+    serialize_rules = ('-password_hash',)
+
+    def __repr__(self):
+        return f"<User(id={self.id}, username={self.username})>"
+
+    def set_password(self, password):
+        self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password_hash, password)
     
