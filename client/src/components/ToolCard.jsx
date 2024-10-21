@@ -51,10 +51,11 @@ function ToolCard({
       <img src={image} className="tool_card-img" />
       <h3 className="tool_card-title"> {name}</h3>
       <div className="tool_card-content">
-        <p>Brand:{brand}</p>
-        <p>Total Number:{totalNumber}</p>
-        <p>Available Tools:{availTools}</p>
-        <p>Purchase Date: {purchaseDate}</p>
+        <p>Tool id: <strong>{id}</strong> </p>
+        <p>Brand: <strong> {brand}</strong></p>
+        <p>Total Number: <strong> {totalNumber}</strong> </p>
+        <p>Available Tools: <strong> {availTools} </strong> </p>
+        <p>Purchase Date:  <strong> {purchaseDate} </strong> </p>
 
         <div className="tool_card-btns">
           <button onClick={handleClickReduce}  className="tool_card-btn minus">-</button>
