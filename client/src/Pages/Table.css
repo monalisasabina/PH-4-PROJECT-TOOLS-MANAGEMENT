@@ -5,30 +5,69 @@ table,th,td{
     border: 0.5px;
     border-style: solid;
     margin-top: 10px;
+    color:black;
+    
 }
 
+tbody{
+  background-color: blanchedalmond;
+}
 thead{
   background-color:gainsboro;
 }
 
 .records_form{
-
-  max-width: 1470px; /* Set a max width for the form */
-  margin: 0 auto; /* Center the form horizontally */
-  padding: 10px; /* Add padding inside the form */
-  border: 1px solid #ddd; /* Optional border for form */
-  border-radius: 5px; /* Optional rounded corners */
-  background-color: #f9f9f9; /* Optional background color */
+  display:inline-flex;
+  border: 1px solid #ddd;
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
+  height: 50px;
+  padding: 10px;
+  width: 1500px;
+  gap: 10px;
 }
 
 input{
-    width: 150px;
+    width: 250px;
     height:30px;
     margin: 5px;
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+div.fields{
+  display: flex; 
+  gap: 15px;
+}
+
+button{
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  margin-top: 2px;
 }
 
 label{
     margin: 10px;
+    color: black;
 
+}
+
+.link{
+  color: navajowhite;
+  margin-right: 20px;
+  margin-left: 15px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.search{
+  margin-left: 1150px;
+  margin-top: 15px;
+  border-radius: 15px;
+  width:350px;
+  text-align: center;
+  font-size: 15px;
 }
 

@@ -5,6 +5,7 @@ import StoreEmployeesForm from "../components/StoreEmployeeForm"
 function StoreEmployees(){
 
     const[storeEmployees, setStoreEmployee]= useState([])
+    const[search ,setSearch]= useState("")
 
     useEffect(() =>{
         fetch('http://127.0.0.1:5555/storeemployees')
@@ -23,12 +24,12 @@ function StoreEmployees(){
         console.log("Deleting employee with ID:", id)
      
         //delete warning and putting a password
-        if(window.confirm("Only the store manager can delete this tool")){
+        if(window.confirm("Only the store manager can delete this store employee")){
           const password=window.prompt("Please enter your password")
       
  
         if(password==='123'){
-          fetch(`http://127.0.0.1:5555/employees/${id}`,{
+          fetch(`http://127.0.0.1:5555/storeemployees/${id}`,{
              method: "DELETE",
            })
           .then((res) => res.json())
@@ -41,17 +42,27 @@ function StoreEmployees(){
        }  
      }
 
-         // handling submit
+    // handling submit
     function handleStoreEmployeeSubmit(newStoreEmployee){
         setStoreEmployee([...storeEmployees, newStoreEmployee])
     }
+
+    //  Handling search store employee
+    const filteredStoreEmployees =storeEmployees.filter((storeEmployee) =>
+        
+        storeEmployee.name.toLowerCase().includes(search.toLowerCase())
+    )
 
     return(
         <>
            <h1>StoreEmployees</h1>
 
+           <div >
+                <input className="search" onChange={(event) =>setSearch(event.target.value)} value={search} placeholder="Search Store Employee Name" type="search"/>
+           </div>
+
            <div>
-               <StoreEmployeesForm onAddEmployee={handleStoreEmployeeSubmit}/>
+               <StoreEmployeesForm onAddStoreEmployee={handleStoreEmployeeSubmit}/>
            </div>
 
            <div>
@@ -66,7 +77,7 @@ function StoreEmployees(){
                    </thead>
                    
                    <tbody>
-                         {storeEmployees.map((storeEmployee) =>(
+                         {filteredStoreEmployees.map((storeEmployee) =>(
                             <tr key={storeEmployee.id || Math.random().toString()}>
                                 <td>{storeEmployee.id}</td>
                                 <td>{storeEmployee.name}</td>

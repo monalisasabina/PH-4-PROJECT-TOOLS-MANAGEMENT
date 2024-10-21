@@ -7,7 +7,7 @@ function RecordsForm({onAddRecord}){
     const[storeEmployeeId, setStoreEmployeeId]=useState('')
     const[dateReturned, setDateReturned]=useState('')
 
-
+   
     // tool_id field
     function handleToolId(event){
         setToolId(event.target.value)
@@ -23,13 +23,6 @@ function RecordsForm({onAddRecord}){
     // Store Employee_Id field
     function handleStoreEmployeeId(event){
         setStoreEmployeeId(event.target.value)
-        console.log(event.target.value)
-    }
-
-
-    // Date Returned field
-    function handleDateReturned(event){
-        setDateReturned(event.target.value)
         console.log(event.target.value)
     }
 
@@ -65,20 +58,25 @@ function RecordsForm({onAddRecord}){
             
         }   
 
+
      return(
         <div>
             <form className="records_form" onSubmit={handleSubmit}>
-                <label htmlFor="tool_id">Tool ID: </label>
-                <input onChange={handleToolId} value={toolId} placeholder="Enter Tool Id" type="number"/>
 
-                <label htmlFor="employee_id">Employee ID:</label>
-                <input onChange={handleEmployeeID} value={employeeId} placeholder="Enter Employee Id" type="number"/>
+                <div className="fields">
+                     <label htmlFor="tool_id">Tool ID: </label>
+                     <input onChange={handleToolId} value={toolId} placeholder="Enter Tool Id" type="number" required/>
+                </div>
 
-                <label htmlFor="store_employee_id">Store Employee ID:</label>
-                <input onChange={handleStoreEmployeeId} value={storeEmployeeId} placeholder="Enter Store Employee Id" type="number"/>
+                <div className="fields">
+                     <label htmlFor="employee_id">Employee ID:</label>
+                     <input onChange={handleEmployeeID} value={employeeId} placeholder="Enter Employee Id" type="number" required/>
+                </div>
 
-                <label htmlFor="date_returned">Date Returned:</label>
-                <input onChange={handleDateReturned} value={dateReturned}  type="date"/>
+                <div className="">
+                     <label htmlFor="store_employee_id">Store Employee ID:</label>
+                     <input onChange={handleStoreEmployeeId} value={storeEmployeeId} placeholder="Enter Store Employee Id" type="number" required/>
+                </div>
 
                 <button type="submit"> SUBMIT </button>
             </form>
