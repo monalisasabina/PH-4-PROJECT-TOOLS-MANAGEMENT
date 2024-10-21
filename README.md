@@ -1,3 +1,4 @@
+
 # PH4 PROJECT: STORE MANAGEMENT SYSTEM
 ## Introduction
 This is a Store Management System for a company that is used to check the stocks at any given time. This system is used at an engineering store, to minimize the current tools theft that was observed by the store department employees.
@@ -97,5 +98,4 @@ In the React App, client-side routing was used. A NavBar is used to allow users 
 2. Login page: https://clerk.com/blog/building-a-react-login-page-template
 
 3. Reading material on canvas
-
 
