@@ -3,18 +3,25 @@
 from flask import Flask,request, make_response
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
-from models import db, Employee, StoreEmployee, Tools, ToolRecords
+from models import db, Employee, StoreEmployee, Tools, ToolRecords, User, bcrypt
+from flask_login import LoginManager, login_user, logout_user, login_required
 from flask_cors import CORS
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'your_secret_key'
 app.json.compact = False
 
 CORS(app)
 
 migrate = Migrate(app, db)
 db.init_app(app)
+bcrypt.init_app(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+
 
 api = Api(app)
 
@@ -28,6 +35,75 @@ class Home(Resource):
           },200
 
 api.add_resource(Home, '/')
+
+# USER REGISTRATION
+class Register(Resource):
+    def post(self):
+        data = request.get_json()
+
+        username = data.get('username')
+        password = data.get('password')
+
+        if not username or not password:
+            return make_response({"error": "Username and password are required"}, 400)
+
+        # Check if the username already exists
+        user = User.query.filter_by(username=username).first()
+        if user:
+            return make_response({"error": "User already exists"}, 400)
+
+        # Hash the password and create the new user
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        new_user = User(username=username, password_hash=hashed_password)
+
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            return make_response({"message": "User registered successfully"}, 201)
+        except:
+            db.session.rollback()
+            return make_response({"error": "Error registering user"}, 500)
+
+api.add_resource(Register, '/register')
+
+
+# USER LOGIN
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+
+        username = data.get('username')
+        password = data.get('password')
+
+        if not username or not password:
+            return make_response({"error": "Username and password are required"}, 400)
+
+        # Find the user in the database
+        user = User.query.filter_by(username=username).first()
+
+        if user and bcrypt.check_password_hash(user.password_hash, password):
+            # Log the user in
+            login_user(user)
+            return make_response({"message": f"Welcome back, {user.username}!"}, 200)
+        else:
+            return make_response({"error": "Invalid credentials"}, 401)
+
+api.add_resource(Login, '/login')
+
+# USER LOGOUT
+class Logout(Resource):
+    @login_required
+    def post(self):
+        logout_user()
+        return make_response({"message": "Successfully logged out"}, 200)
+
+api.add_resource(Logout, '/logout')
+
+# Load the user from the database for Flask-Login
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
 
 # EMPLOYEES CRUD...........................................................
 class Employees(Resource):
@@ -157,7 +233,7 @@ class StoreEmployees(Resource):
                    new_store_employee.to_dict(),201
               )
           except:    
-               make_response({"errors": ["validation errors"]},403)
+              return make_response({"errors": ["validation errors"]},403)
      
 api.add_resource(StoreEmployees, '/storeemployees')     
      
@@ -224,6 +300,7 @@ class Tools1(Resource):
           tools_list=[]
           for tool in Tools.query.all():
                tool_dict = {
+                    "id":tool.id,
                     "name":tool.name,
                     "brand":tool.brand,
                     "no_of_tools":tool.no_of_tools,
@@ -243,9 +320,9 @@ class Tools1(Resource):
               new_tool= Tools(
                    name= data['name'],
                    brand=data['brand'],
-                   no_of_tools=data['no_of_tools'],
+                   no_of_tools=int(data['no_of_tools']),
                    image=data['image'],
-                   available_tools=data['available_tools']
+                   available_tools=int(data['available_tools'])
                )
               
               db.session.add(new_tool)
@@ -254,8 +331,10 @@ class Tools1(Resource):
               return make_response(
                    new_tool.to_dict(),201
               )
-          except:    
-               make_response({"errors": ["validation errors"]},403)
+          # except:    
+          #      return make_response({"errors": ["validation errors"]},403)
+          except Exception as e:    
+               return make_response({"errors": [str(e)]}, 403)
           
 api.add_resource(Tools1, '/tools')
 
@@ -359,7 +438,7 @@ class Records(Resource):
                    new_record.to_dict(),201
               )
           except:    
-               make_response({"errors": ["validation errors"]},403)
+               return make_response({"errors": ["validation errors"]},403)
           
 api.add_resource(Records, '/records')
 
@@ -418,7 +497,10 @@ class RecordById(Resource):
 
           return make_response(response_dict,200)
      
-api.add_resource(RecordById, '/records/<int:id>')     
+api.add_resource(RecordById, '/records/<int:id>')   
+
+with app.app_context():
+    db.create_all()
      
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -1,0 +1,65 @@
+.tool_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 50px;
+  column-gap: 50px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.tool_card {
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+  width: 400px;
+  background-color: #ffff;
+}
+
+.tool_card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+}
+
+.tool_card-img {
+  display: flex;
+  width: 400px;
+  height: 200px;
+  object-fit: cover;
+  align-items: center;
+  margin: auto;
+}
+
+.tool_card-title {
+  color: #111;
+  padding: 0 1rem 0 1rem;
+  font-size: 20px;
+}
+
+.tool_card-content {
+  padding: 2rem;
+}
+
+.tool_card-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tool_card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffff;
+  font-size: 1.5rem;
+  border-radius: 50%;
+
+  width: 2rem;
+  height: 2rem;
+  background-color: green;
+}
+
+.tool_card-btn:hover {
+  cursor: pointer;
+}
