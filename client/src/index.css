@@ -38,6 +38,7 @@ body {
     padding: 10px 20px;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
     margin-top: 10%;
+    color: #fff;
   }
   
   .dark-glow-navbar ul {
@@ -53,6 +54,7 @@ body {
     margin: 0 15px;
     gap: 5rem;
     padding-right: 10px;
+    
     
   }
   
