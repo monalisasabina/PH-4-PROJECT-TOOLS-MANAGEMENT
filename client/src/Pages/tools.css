@@ -22,9 +22,10 @@
 }
 
 .tool_card-img {
-  display: flex;
-  width: 400px;
-  height: 200px;
+  display: block;
+  width: 350px;
+  height: 150px;
+  padding:5px;
   object-fit: cover;
   align-items: center;
   margin: auto;

@@ -64,16 +64,18 @@ function AddToolForm({onAddTool}){
             </div>
 
             <div className="fields">
-                <label htmlFor="no_of_tools">NUMBER OF TOOLS BROUGHT:</label>
-                <input onChange={formik.handleChange} id="no_of_tools" value={formik.values.no_of_tools} type="number" placeholder="Enter Total Number of Tools"/>
-                <p style={{color: "red"}}> {formik.errors.no_of_tools} </p>
-            </div>
-
-            <div className="fields">
                 <label htmlFor="image">IMAGE:</label>
                 <input onChange={formik.handleChange} id="image" value={formik.values.image} type="text" placeholder="Enter Tool Name"/>
                 <p style={{color: "red"}}> {formik.errors.image} </p>
             </div>
+
+            <div className="fields">
+                <label htmlFor="no_of_tools">NO. OF TOOLS BOUGHT:</label>
+                <input onChange={formik.handleChange} id="no_of_tools" value={formik.values.no_of_tools} type="number" placeholder="Enter Total Number of Tools"/>
+                <p style={{color: "red"}}> {formik.errors.no_of_tools} </p>
+            </div>
+
+          
 
             <button type="submit">SUBMIT</button>
           </form>

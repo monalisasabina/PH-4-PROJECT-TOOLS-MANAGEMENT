@@ -35,11 +35,11 @@ function AddTool(){
          
           {/* One Tool card */}
           {newTool && (
-             <div className="tool_card add_tool">
+             <div className="add_tool_card">
                <h2>New Tool Added</h2>
-               <h3>{newTool.name}</h3>
-               <img src={newTool.image}/>
-               <p>Brand:{newTool.brand}</p>
+               <h3 id="new_tool_title" >{newTool.name}</h3>
+               <img id="new_tool_image"  src={newTool.image}/>
+               <p>Brand:<strong> {newTool.brand} </strong></p>
                <p>Total number of tools bought: <strong> {newTool.no_of_tools} </strong> </p>
                <p>Purchase date: <strong>{newTool.purchase_date}</strong></p>
              

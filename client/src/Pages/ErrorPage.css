@@ -1,0 +1,23 @@
+.err-image{
+    height: 700px;
+}
+
+.err-message{
+    font-size: 40px;
+    text-align: center;
+    color: indianred;
+}
+
+.err-image-cont{
+     display: block;
+     margin: 70px;
+}
+
+button.err-btn{
+    text-align: center;
+    display: flex;
+    margin: auto;
+    height:30px;
+    font-size: 20px;
+
+}
