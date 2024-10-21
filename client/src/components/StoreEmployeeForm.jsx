@@ -1,69 +1,62 @@
-import { useState } from "react"
+import { useFormik } from "formik"
+import * as Yup from "yup"
 
 function StoreEmployeesForm({onAddStoreEmployee}){
 
-    const[name, setName]= useState([])
-    const[role, setRole]= useState([])
+    const formSchema = Yup.object().shape({
 
-    // Name Field
-    function handleNameChange(event){
-        setName(event.target.value)
-        console.log(event.target.value)
-    }
+      name: Yup.string().required("Must enter a name"),
+      role: Yup.string().required("Role is required")
+    })
 
-    // Role Field
-    function handleRoleChange(event){
-        setRole(event.target.value)
-        console.log(event.target.value)
-    }
+    const formik = useFormik({
 
-    // Submitting store employee form
-    function handleStoreEmployeeSubmit(event){
+      initialValues:{
+        name: '',
+        role: '',
+      },
 
-         event.preventDefault()
+        validationSchema: formSchema,
+        onSubmit: (values, {resetForm}) => {
 
-         const storeEmployeeData={
-            name:name,
-            role:role,
-            
-        }
-        console.log(storeEmployeeData)
-
-        fetch(`http://127.0.0.1:5555/storeemployees `, {
-            method: "POST",
+          fetch(`http://127.0.0.1:5555/storeemployees`, {
+            method: 'POST',
             headers: {
-              "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(storeEmployeeData),
-          })
-            .then((res) => res.json())
-            .then((newStoreEmployee) => onAddStoreEmployee(newStoreEmployee));
-           
-    
-            // resetting field form
-            setName('');
-            setRole('');
-         
-    }
-   
+            body: JSON.stringify(values),
+        })
+        .then((res) => res.json())
+        .then((newStoreEmployee) => {
+            onAddStoreEmployee(newStoreEmployee);
+          
+            // Reset the form after submission
+            resetForm(); 
+        })
+      }
+    })
+
     return(
-
         <>
-          <form onSubmit={handleStoreEmployeeSubmit} className="records_form">
-             <label htmlFor="name">NAME</label>
-             <input onChange={handleNameChange} value={name} type="text" placeholder="Enter Employee Name"/>
+          <form onSubmit={formik.handleSubmit} className="records_form">
 
-             <label htmlFor="role">ROLE</label>
-             <input onChange={handleRoleChange} value={role} type="text" placeholder="Enter Employee's Role"/>
+             <div className="fields">
+                 <label htmlFor="name">NAME</label>
+                 <input onChange={formik.handleChange} id="name" value={formik.values.name} type="text" placeholder="Enter Employee Name"/>
+                 <p style={{color: "red"}}> {formik.errors.name} </p>
+             </div>
+
+             <div className="fields">
+                 <label htmlFor="role">ROLE</label>
+                 <input onChange={formik.handleChange} id="role" value={formik.values.role} type="text" placeholder="Enter Employee's Role"/>
+                 <p style={{color: "red"}}> {formik.errors.role} </p>
+             </div>
 
              <button type="submit" >SUBMIT</button>
 
           </form>
-        
         </>
     )
-
-
 
 }
 
