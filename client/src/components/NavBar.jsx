@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
 
+import {NavLink} from "react-router-dom"
+ 
 function NavBar({ isLoggedIn, handleLogout }) {
   if (!isLoggedIn) {
     return null; // Do not render the navbar if not logged in

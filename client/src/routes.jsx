@@ -10,6 +10,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/signup"; // Import the Signup component
 import PrivateRoutes from "./components/PrivateRoutes";
 
+
 const routes = [
   {
     path: "/",
