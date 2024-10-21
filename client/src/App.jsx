@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
+import Login from './Pages/Login';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,8 +12,10 @@ function App() {
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
+    }else{
+      navigate('/login')
     }
-  }, []);
+  }, [navigate]);
 
   // Handle logout function
   const handleLogout = () => {
@@ -21,12 +24,23 @@ function App() {
     navigate('/login'); // Redirect to login page
   };
 
+
   return (
     <>
       <header>
-        <NavBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+       
+           {isLoggedIn && <NavBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}
       </header>
-      <Outlet context={{ isLoggedIn, setIsLoggedIn }} /> {/* Pass the state and setter to the Outlet */}
+
+      {!isLoggedIn ? (
+           <Login setIsLoggedIn={setIsLoggedIn} /> // Pass setIsLoggedIn to Login
+      ) : (
+           <Outlet context={{ isLoggedIn, setIsLoggedIn }} />
+      )}
+
+
+      
+      {/* <Outlet context={{ isLoggedIn, setIsLoggedIn }} /> Pass the state and setter to the Outlet */}
     </>
   );
 }

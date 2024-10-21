@@ -18,20 +18,35 @@ thead{
 
 .add_tools_form{
   display:inline-flex;
+  /* flex-direction:row; */
   flex-wrap: wrap;
-  gap: 3px;
-  max-width: 350px;
+  gap: 10px;
   padding: 10px; 
   border: 1px solid #ddd; 
   border-radius: 5px; 
   background-color: #f9f9f9; 
   color: black;
   margin-left: 10px;
+  width: 500px;
 }
+
+.add_tools_form label {
+  display:block; 
+  margin-bottom: 5px; 
+}
+
+.add_tools_form input {
+  display:block; 
+  margin-bottom: 1px; 
+  width: 300px;
+}
+
 .add_tool{
-  display: inline-table;
+  display:flow-root;
   margin-right: 90px;
 }
+
+
 
 .tools_form{
   max-width: 1470px; 
@@ -55,7 +70,7 @@ thead{
 }
 
 input{
-    width: 250px;
+    width: 270px;
     height:30px;
     margin: 5px;
     border-radius: 15px;
