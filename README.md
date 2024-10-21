@@ -84,8 +84,8 @@ In the React App, client-side routing was used. A NavBar is used to allow users 
 
    4. Tool records
      This displays a table that shows what tool has been taken(tool_id), who took it(employee_id), who assigned it (store_employee_id), date taken and date returned. Since the table only shows the IDs, the user(store employee) can click the link `view employee list` to check the employee as per the ID on the Employee Page. The same applies for the store employee, `view store employee list`. The update button only updates the date returned in the format, dd mm yyyy. 
-
      Note: The delete button has a password prompt. For the sake of the project, the password is '123'.
+
 
     5. Error Page
      When the user enters the URL with a wrong path, an error page will appear. The should therefore make the user to enter the correct path.
