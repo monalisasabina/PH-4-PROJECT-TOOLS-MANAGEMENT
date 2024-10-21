@@ -16,6 +16,33 @@ thead{
   background-color:gainsboro;
 }
 
+.add_tools_form{
+  display:inline-flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  max-width: 350px;
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
+  color: black;
+  margin-left: 10px;
+}
+.add_tool{
+  display: inline-table;
+  margin-right: 90px;
+}
+
+.tools_form{
+  max-width: 1470px; 
+  margin: 0 auto; 
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  background-color: #f9f9f9; 
+  color: black;
+}
+
 .records_form{
   display:inline-flex;
   border: 1px solid #ddd;

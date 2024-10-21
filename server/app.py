@@ -157,7 +157,7 @@ class StoreEmployees(Resource):
                    new_store_employee.to_dict(),201
               )
           except:    
-               make_response({"errors": ["validation errors"]},403)
+              return make_response({"errors": ["validation errors"]},403)
      
 api.add_resource(StoreEmployees, '/storeemployees')     
      
@@ -224,6 +224,7 @@ class Tools1(Resource):
           tools_list=[]
           for tool in Tools.query.all():
                tool_dict = {
+                    "id":tool.id,
                     "name":tool.name,
                     "brand":tool.brand,
                     "no_of_tools":tool.no_of_tools,
@@ -243,9 +244,9 @@ class Tools1(Resource):
               new_tool= Tools(
                    name= data['name'],
                    brand=data['brand'],
-                   no_of_tools=data['no_of_tools'],
+                   no_of_tools=int(data['no_of_tools']),
                    image=data['image'],
-                   available_tools=data['available_tools']
+                   available_tools=int(data['available_tools'])
                )
               
               db.session.add(new_tool)
@@ -254,8 +255,10 @@ class Tools1(Resource):
               return make_response(
                    new_tool.to_dict(),201
               )
-          except:    
-               make_response({"errors": ["validation errors"]},403)
+          # except:    
+          #      return make_response({"errors": ["validation errors"]},403)
+          except Exception as e:    
+               return make_response({"errors": [str(e)]}, 403)
           
 api.add_resource(Tools1, '/tools')
 
@@ -359,7 +362,7 @@ class Records(Resource):
                    new_record.to_dict(),201
               )
           except:    
-               make_response({"errors": ["validation errors"]},403)
+               return make_response({"errors": ["validation errors"]},403)
           
 api.add_resource(Records, '/records')
 
