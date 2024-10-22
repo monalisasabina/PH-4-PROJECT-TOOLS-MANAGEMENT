@@ -28,11 +28,11 @@ thead{
   background-color: #f9f9f9; 
   color: black;
   margin-left: 10px;
-  width: 1500px;
+  width: auto;
 }
 
 .add_tools_form label {
-  margin-bottom: 5px; 
+  margin-bottom: 10px; 
 }
 
 .add_tools_form input {
@@ -56,6 +56,23 @@ thead{
   box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
 }
 
+.add_tool_empty_box{
+  border: 2px solid black;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: white;
+  text-align: center;
+  width: 300px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+  font-size: 18px;
+  margin: auto;
+
+}
+
 #new_tool_image{
   height: 350px;
   width: 350px;
@@ -68,9 +85,6 @@ thead{
   text-align: center;
   
 }
-
-
-
 
 .tools_form{
   max-width: 1470px; 
@@ -136,5 +150,9 @@ label{
   width:350px;
   text-align: center;
   font-size: 15px;
+}
+
+#home{
+  margin: auto;
 }
 

@@ -12,7 +12,7 @@ function Home(){
           </header>
           <h1>Elevate Your  Business</h1>
             <h1>Using Our Management System</h1>
-          <p>Store management system simplifies the day to day activities of your store for better management </p>
+          <p id="home">Store management system simplifies the day to day activities of your store for better management </p>
 
           <section className="solutions">
         <h2>Our Solutions</h2>
