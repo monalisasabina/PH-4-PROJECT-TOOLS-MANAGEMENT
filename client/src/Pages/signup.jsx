@@ -58,6 +58,7 @@ const Signup = () => {
         setMessage(data.message);
         setError(null);
         navigate('/'); // Redirect to home or dashboard after signup
+        window.location.reload()
       } else {
         setError(data.error);  // Display error from server
         setMessage(null);
@@ -119,8 +120,6 @@ const Signup = () => {
 
       {message && <p style={{ color: 'green' }} aria-live="polite">{message}</p>}
       {error && <p style={{ color: 'red' }} aria-live="polite">{error}</p>}
-
-      
 
     </div>
   );

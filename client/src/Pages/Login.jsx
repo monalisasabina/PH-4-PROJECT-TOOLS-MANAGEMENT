@@ -28,6 +28,7 @@ const Login = ({ setIsLoggedIn }) => {
         localStorage.setItem('token', data.token); // Store token
         setIsLoggedIn(true); // Update login state
         navigate('/'); // Redirect to home
+        window.location.reload()
       } else {
         setError('Invalid username or password. Please try again.');
       }

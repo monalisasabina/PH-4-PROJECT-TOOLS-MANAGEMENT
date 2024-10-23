@@ -1,5 +1,4 @@
 
-
 body {
     /* display: flex; */
     justify-content: center; 
@@ -27,6 +26,8 @@ body {
     width: 100%;
     max-width: 400px;
     text-align: left;
+    margin: auto;
+   
   }
   
   .signup-form h2 {
@@ -40,7 +41,7 @@ body {
     font-weight: bold;
     color: #333;
     text-align: left;
-    
+
   }
   
   .signup-form input {

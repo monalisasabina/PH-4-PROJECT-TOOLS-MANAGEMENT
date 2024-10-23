@@ -10,9 +10,10 @@ function App() {
   // Check if user is already logged in by checking a token or session 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    
     if (token) {
       setIsLoggedIn(true);
-    }else{
+    }else  {
       navigate('/login')
     }
   }, [navigate]);
@@ -22,25 +23,18 @@ function App() {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
     navigate('/login'); // Redirect to login page
+    
   };
 
 
   return (
     <>
       <header>
-       
            {isLoggedIn && <NavBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}
+
       </header>
-
-      {!isLoggedIn ? (
-           <Login setIsLoggedIn={setIsLoggedIn} /> // Pass setIsLoggedIn to Login
-      ) : (
            <Outlet context={{ isLoggedIn, setIsLoggedIn }} />
-      )}
 
-
-      
-      {/* <Outlet context={{ isLoggedIn, setIsLoggedIn }} /> Pass the state and setter to the Outlet */}
     </>
   );
 }
