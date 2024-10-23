@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react"
 import RecordsForm from "../components/RecordsForm"
+import ToolRecordsDeleteModal from "../Modals/ToolRecordsModal"
 import './Table.css'
 import { Link } from "react-router-dom"
 
@@ -7,6 +8,9 @@ function ToolRecords(){
 
     const[toolRecords, setToolRecords]=useState([])
     const[search, setSearch] =useState("")
+    // modal states
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedToolRecordId, setSelectedToolRecordId] = useState(null);
 
     // Fetching the toolrecords
     useEffect(()=>{
@@ -27,26 +31,23 @@ function ToolRecords(){
     }
 
     // Handling record delete
-    function handleRecordDelete(id){
+    function handleRecordDelete(password){
 
-        console.log("Deleting record with ID:", id)
-     
-        //delete warning and putting a password
-        if(window.confirm("Only the store manager can delete this record")){
-          const password=window.prompt("Please enter your password")
-      
  
         if(password==='123'){
-          fetch(`http://127.0.0.1:5555/records/${id}`,{
+          fetch(`http://127.0.0.1:5555/records/${selectedToolRecordId}`,{
              method: "DELETE",
            })
           .then((res) => res.json())
-          .then(() => setToolRecords(toolRecords.filter(record => record.id !== id)))
+          .then(() => setToolRecords(toolRecords.filter(record => record.id !== selectedToolRecordId)))
           .catch((error) => console.error("Error deleting Tool record",error))
  
+          // Close modal after confirming the deletion
+          setIsModalOpen(false);
+
           }else{
          alert('Incorrect password')
-        }
+        
        }  
      }
 
@@ -81,6 +82,7 @@ function ToolRecords(){
                     record.id === id ? updatedRecord : record
                 ));
 
+                // The window wasn't reloading as it should, I have included:
                 window.location.reload()
             })
             .catch((error) => console.error('Error updating date returned', error));
@@ -137,12 +139,25 @@ function ToolRecords(){
                             <td>{toolrecord.date_taken}</td>
                             <td>{toolrecord.date_returned || "N/A"}</td>
                             <td>  <button onClick={() => handleDateReturnedUpdate(toolrecord.id)}>UPDATE</button> </td>
-                            <td><button onClick={() =>handleRecordDelete(toolrecord.id)}>DELETE</button></td>
+                            <td>
+                                <button onClick={() => {
+                                                setSelectedToolRecordId(toolrecord.id)
+                                                setIsModalOpen(true)
+                                    }}>DELETE
+                                </button>
+                            </td>
                         </tr>
                        ))}
                    </tbody>
                </table>
            </div>
+
+           <ToolRecordsDeleteModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={handleRecordDelete}
+
+           />
         </>
     )
 }

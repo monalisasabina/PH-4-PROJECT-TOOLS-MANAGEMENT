@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
 import StoreEmployeesForm from "../components/StoreEmployeeForm"
+import StoreEmployeeDeleteModal from "../Modals/StoreEmployeeDeleteModal";
 
 
 function StoreEmployees(){
 
     const[storeEmployees, setStoreEmployee]= useState([])
     const[search ,setSearch]= useState("")
+    // modal states
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedStoreEmployeeId, setSelectedStoreEmployeeId] = useState(null);
 
     useEffect(() =>{
         fetch('http://127.0.0.1:5555/storeemployees')
@@ -19,26 +23,21 @@ function StoreEmployees(){
 
 
     // Handle employee delete
-    function handleStoreEmployeeDelete(id){
-
-        console.log("Deleting employee with ID:", id)
+    function handleStoreEmployeeDelete(password){
      
-        //delete warning and putting a password
-        if(window.confirm("Only the store manager can delete this store employee")){
-          const password=window.prompt("Please enter your password")
-      
- 
         if(password==='123'){
-          fetch(`http://127.0.0.1:5555/storeemployees/${id}`,{
+          fetch(`http://127.0.0.1:5555/storeemployees/${selectedStoreEmployeeId}`,{
              method: "DELETE",
            })
           .then((res) => res.json())
-          .then(() => setStoreEmployee(storeEmployees.filter(storeEmployee => storeEmployee.id !== id)))
+          .then(() => setStoreEmployee(storeEmployees.filter(storeEmployee => storeEmployee.id !== selectedStoreEmployeeId)))
           .catch((error) => console.error("Error deleting store employee",error))
  
+          // Close modal after confirming the deletion
+          setIsModalOpen(false);
           }else{
          alert('Incorrect password')
-        }
+        
        }  
      }
 
@@ -82,7 +81,15 @@ function StoreEmployees(){
                                 <td>{storeEmployee.id}</td>
                                 <td>{storeEmployee.name}</td>
                                 <td>{storeEmployee.role}</td>
-                               <td><button onClick={() =>handleStoreEmployeeDelete(storeEmployee.id)} >DELETE</button></td> 
+                                <td>
+                                    <button onClick={() =>{
+                                        setSelectedStoreEmployeeId(storeEmployee.id);
+                                        setIsModalOpen(true)
+
+                                    }} 
+                                    >DELETE
+                                    </button>
+                                </td> 
 
                             </tr>
                          ))}
@@ -90,6 +97,14 @@ function StoreEmployees(){
                    </tbody>
                </table>
            </div>
+
+           <StoreEmployeeDeleteModal
+
+               isOpen={isModalOpen}
+               onClose={() => setIsModalOpen(false)}
+               onConfirm={handleStoreEmployeeDelete}
+           
+           />
            
         </>
     )
