@@ -25,3 +25,4 @@ werkzeug==2.2.2; python_version >= '3.8'
 flask-bcrypt==1.0.1
 Flask-Login==0.6.2
 Flask-Cors==3.0.10
+python-dotenv==1.0.1

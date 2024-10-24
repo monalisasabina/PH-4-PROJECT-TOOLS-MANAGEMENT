@@ -1,4 +1,6 @@
 #!/usr/bin/env python 3
+from dotenv import load_dotenv
+load_dotenv()
 
 from flask import Flask,request, make_response
 from flask_migrate import Migrate

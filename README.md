@@ -11,7 +11,11 @@ With this system, the user who is the store employee should be able to:
 ## Project Overview
 The project uses Vite React App for Frontend and Flask-RESTful API to access the Database, Backend.
 
-To access this project, `fork and clone` this repository in your terminal. Once you have successful done that, still in your terminal, to access the frontend side `npm run dev` in the `client` directory and to access the backend side (opening the server), run the virtual environment `pipenv shell` then run the server `python app.py`.
+Deployment:
+  Static Site: https://store-management-system-7tfm.onrender.com
+  Webservice: https://ph-4-project-tools-management-2.onrender.com
+
+Also to access this project, `fork and clone` this repository in your terminal. Once you have successful done that, still in your terminal, to access the frontend side `npm run dev` in the `client` directory and to access the backend side (opening the server), run the virtual environment `pipenv shell` then run the server `python app.py`.
 
 
 ### Server
@@ -78,7 +82,7 @@ In the React App, client-side routing was used. A NavBar is used to allow users 
      After a successful login the user, will be met with a homepage that briefly introduces and describes what the App is all about.
 
   3. Add tool
-     It contains a form that is used to add new tools that are brought in the store. The user is required to put the name, brand, number of tools brought and the image of the tool. When the details have been submitted, a card will appear besides the form showing the details of that tool added. This relies on the POST/tools route of the API to access the database. 
+     It contains a form that is used to add new tools that are brought in the store. The user is required to put the name, brand, number of tools brought and the image of the tool. When the details have been submitted, a card will appear below the form showing the details of that tool added. This relies on the POST/tools route of the API to access the database. 
 
   4. Tools
      The page shows all the tools or stock in the store in form of cards. One card shows the details of a tool. It also has two buttons that reduce or add the number of available tools. For example there are 10 hammers in total and a store employee assigns one hammer to a technician(an employee) he should click a button that reduces the number of available tools by one. When the hammer is returned, the store employee clicks the button that increases the available tools by one. This relies on the GET/tools route of the API to access the database.
@@ -93,9 +97,7 @@ In the React App, client-side routing was used. A NavBar is used to allow users 
 
 
 ## REFERENCES
-1. Using prompt: https://reintech.io/blog/understanding-window-prompt-method
+1. Login page: https://clerk.com/blog/building-a-react-login-page-template
 
-2. Login page: https://clerk.com/blog/building-a-react-login-page-template
-
-3. Reading material on canvas
+2. Reading material on canvas
 
