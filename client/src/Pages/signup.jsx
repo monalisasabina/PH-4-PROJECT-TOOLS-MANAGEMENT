@@ -42,7 +42,7 @@ const Signup = () => {
     setLoading(true); // Start loading state
 
     try {
-      const response = await fetch('http://localhost:5555/register', {
+      const response = await fetch('https://ph-4-project-tools-management-3.onrender.com/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

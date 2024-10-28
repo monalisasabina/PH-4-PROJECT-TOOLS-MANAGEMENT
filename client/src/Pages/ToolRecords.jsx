@@ -14,7 +14,7 @@ function ToolRecords(){
 
     // Fetching the toolrecords
     useEffect(()=>{
-        fetch('http://127.0.0.1:5555/records')
+        fetch('https://ph-4-project-tools-management-3.onrender.com/records')
         .then((res) => res.json())
         .then((toolRecordsData) => {
                               console.log(toolRecordsData)
@@ -35,7 +35,7 @@ function ToolRecords(){
 
  
         if(password==='123'){
-          fetch(`http://127.0.0.1:5555/records/${selectedToolRecordId}`,{
+          fetch(`https://ph-4-project-tools-management-3.onrender.com/records/${selectedToolRecordId}`,{
              method: "DELETE",
            })
           .then((res) => res.json())
@@ -69,7 +69,7 @@ function ToolRecords(){
             const [day, month,year] = newDateReturned.split(" ");
             const formattedDate = `${year}-${month}-${day}`
 
-            fetch(`http://127.0.0.1:5555/records/${id}`, {
+            fetch(`https://ph-4-project-tools-management-3.onrender.com/records/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

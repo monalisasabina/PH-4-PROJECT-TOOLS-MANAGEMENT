@@ -6,7 +6,7 @@ function Tools() {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5555/tools")
+    fetch("https://ph-4-project-tools-management-3.onrender.com/tools")
       .then((res) => res.json())
       .then((toolsData) => {
         console.log(toolsData);

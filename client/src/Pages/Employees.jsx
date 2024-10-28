@@ -11,7 +11,7 @@ function Employees() {
     const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/employees')
+        fetch('https://ph-4-project-tools-management-3.onrender.com/employees')
             .then((res) => res.json())
             .then((employeesData) => {
                 console.log(employeesData);
@@ -28,7 +28,7 @@ function Employees() {
     // Handle employee delete
     function handleEmployeeDelete(password) {
         if (password === '123') {
-            fetch(`http://127.0.0.1:5555/employees/${selectedEmployeeId}`, {
+            fetch(`https://ph-4-project-tools-management-3.onrender.com/employees/${selectedEmployeeId}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())

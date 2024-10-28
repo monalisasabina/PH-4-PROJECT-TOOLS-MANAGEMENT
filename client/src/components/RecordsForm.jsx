@@ -39,7 +39,7 @@ function RecordsForm({onAddRecord}){
           }
           console.log(recordData);
     
-          fetch(`http://127.0.0.1:5555/records `, {
+          fetch(`https://ph-4-project-tools-management-3.onrender.com/records `, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

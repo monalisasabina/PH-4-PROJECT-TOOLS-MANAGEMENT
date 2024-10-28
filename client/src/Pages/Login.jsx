@@ -15,7 +15,7 @@ const Login = ({ setIsLoggedIn }) => {
     setIsLoading(true); // Set loading to true during the login process
 
     try {
-      const response = await fetch('http://localhost:5555/login', {
+      const response = await fetch('https://ph-4-project-tools-management-3.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

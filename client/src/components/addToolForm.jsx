@@ -27,7 +27,7 @@ function AddToolForm({onAddTool}){
             available_tools: values.no_of_tools,
           }  
 
-          fetch(`http://127.0.0.1:5555/tools`, {
+          fetch(`https://ph-4-project-tools-management-3.onrender.com/tools`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
