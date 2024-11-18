@@ -71,7 +71,7 @@ const Login = ({ setIsLoggedIn }) => {
         </button>
         {/* Link to the signup page */}
       <p>
-        Don't have an account? <Link to="/signup">Sign up here</Link>
+        Don't have an account? <Link to="/signup">Register</Link>
       </p>
       </form>
       
